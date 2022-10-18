@@ -1,0 +1,7 @@
+.fa-power-off {
+  transition: 0.3s;
+}
+.fa-power-off:hover {
+  color: rgb(192, 43, 43);
+
+}
