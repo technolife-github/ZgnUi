@@ -98,7 +98,7 @@ app.UseCors(builder =>
 {
     if (origins[0] == "*")
     {
-        builder.WithOrigins("*").AllowAnyHeader();
+        builder.AllowAnyOrigin().AllowAnyHeader();
     }
     else
     {
@@ -107,7 +107,6 @@ app.UseCors(builder =>
 });
 app.ConfigureCustomExceptionMiddleware();
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
 
 app.UseAuthorization();

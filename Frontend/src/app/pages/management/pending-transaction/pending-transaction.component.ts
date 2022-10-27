@@ -46,7 +46,8 @@ export class PendingTransactionComponent implements OnInit {
       show: {
         header: true,
         footer: true,
-        toolbar: true
+        toolbar: true,
+        selectColumn: true,
       },
       toolbar: {
           items: [

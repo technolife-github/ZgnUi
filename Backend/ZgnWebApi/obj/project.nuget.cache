@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yGfFP+sTftRbXy9T9FRHOyXdR+zbq2IgaFl22Jej8u7iMaW00Ki9tdhkP4OOZcWIX9J6yu69jNCbNb6EBGAGcg==",
+  "dgSpecHash": "iZGVgBpdBcUXiU3PHKBXFaPx2NIr8JIWsPNqvtO45UDGmS/S+A0I7PkJwCHr14wt9FDbRfsH/ig73WWB+ShJEQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\OrioN\\source\\repos\\ZgnWebApi\\ZgnWebApi\\ZgnWebApi.csproj",
+  "projectFilePath": "C:\\Users\\OrioN\\Desktop\\Github\\ZgnUi\\Backend\\ZgnWebApi\\ZgnWebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\OrioN\\.nuget\\packages\\autofac\\6.4.0\\autofac.6.4.0.nupkg.sha512",
     "C:\\Users\\OrioN\\.nuget\\packages\\autofac.extensions.dependencyinjection\\8.0.0\\autofac.extensions.dependencyinjection.8.0.0.nupkg.sha512",
