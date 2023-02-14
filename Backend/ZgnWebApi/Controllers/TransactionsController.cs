@@ -97,6 +97,17 @@ namespace ZgnWebApi.Controllers
             }
             return BadRequest(result);
         }
+        [HttpPost("Start")]
+        public IActionResult Start(Transaction transaction)
+        {
+            base.CheckRole("Transaction.Start");
+            var result = transaction.Start();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
         [HttpGet("GetMissionByTransactionIdUi")]
         public IActionResult GetMissionByTransactionIdUi(int TransactionId)

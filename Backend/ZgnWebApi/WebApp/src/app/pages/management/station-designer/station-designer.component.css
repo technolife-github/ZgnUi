@@ -1,0 +1,6 @@
+.content{
+  height: calc(100vh - 60px);
+}
+.form-control{
+  height: 36px !important;
+}

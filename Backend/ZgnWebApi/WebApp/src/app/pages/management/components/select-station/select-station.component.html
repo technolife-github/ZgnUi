@@ -1,0 +1,13 @@
+
+
+
+  <div class="ground">
+    <div class="layout-content">
+      <div class="layout-row">
+        <a *ngFor="let item of [].constructor(station.ColumnLen*station.RowLen); let i=index" [style]="getStyle(i)"
+        data-box="item" [class]="'list-item '+getClassValue(i)" (click)="setSelected(i)">
+          <span class="item-title">{{(getTitle(i))}}</span> {{getName(i)}}
+        </a>
+      </div>
+    </div>
+  </div>

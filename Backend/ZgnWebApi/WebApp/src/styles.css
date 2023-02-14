@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+.w2ui-scroll-wrapper{
+  width: 100%;
+  overflow-x: auto;
+}
+.w2ui-scroll-left, .w2ui-scroll-right{
+  display: none !important;
+}

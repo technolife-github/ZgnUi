@@ -6,6 +6,7 @@ using System.Net;
 using ZgnWebApi.Controllers.Base;
 using ZgnWebApi.Core.Utilities.Filters;
 using ZgnWebApi.Core.Utilities.Helpers;
+using ZgnWebApi.Core.Utilities.IoC;
 using ZgnWebApi.Core.Utilities.Results;
 using ZgnWebApi.Entities;
 
@@ -15,6 +16,15 @@ namespace ZgnWebApi.Controllers
     [ApiController]
     public class StationsController : PageableController<Station>
     {
+        public StationsController()
+        {
+            base.AddRole("Station.GetAll");
+            base.AddRole("Station.Get");
+            base.AddRole("Station.Add");
+            base.AddRole("Station.Update");
+            base.AddRole("Station.Delete");
+            base.AddRole("Station.SoftDelete");
+        }
         public override IActionResult GetAll()
         {
             base.CheckRole("Station.GetAll");
@@ -157,6 +167,13 @@ namespace ZgnWebApi.Controllers
             }
             var errorResult = new ErrorGridResult(result.Message);
             return BadRequest(errorResult);
+        }
+        [HttpGet("GetAllByLoginUser")]
+        public IActionResult GetAllByLoginUser()
+        {
+            base.CheckRole("Station.GetAllByLoginUser");
+            var result = new Station().GetAllByUserId(ServiceTool.GetUserId());
+            return Ok(result);
         }
 
 

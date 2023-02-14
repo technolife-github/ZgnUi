@@ -12,6 +12,8 @@ namespace ZgnWebApi.Entities
         public int Id { get; set; }
         public int StationId { get; set; }
         public string? NodeId { get; set; }
+        public int ColPosition { get; set; } = -1;
+        public int RowPosition { get; set; } = -1;
         [NotMapped]
         public readonly Repository _repository = new Repository();
         public class Repository : EfBaseRepository<StationNode, ZgnAgvManagerContext>

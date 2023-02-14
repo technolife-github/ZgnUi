@@ -1,0 +1,38 @@
+  <div class="login">
+
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form [formGroup]="loginForm">
+              <h1>AGV Yönetim Paneli</h1>
+              <div>
+                <input type="text" class="form-control" formControlName="UserName" placeholder="Kullanıcı Adı" required="" />
+              </div>
+              <div>
+                <input type="password" class="form-control" formControlName="Password" placeholder="Şifre" required="" />
+              </div>
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-primary col-6" (click)="onSubmit()">Giriş</button>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1>TECHNOLIFE</h1>
+                  <p>©2022 All rights reserved.</p>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>

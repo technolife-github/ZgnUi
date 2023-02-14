@@ -182,6 +182,9 @@ namespace ZgnWebApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("ColumnLen")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -196,6 +199,9 @@ namespace ZgnWebApi.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RowLen")
+                        .HasColumnType("int");
 
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
@@ -238,6 +244,9 @@ namespace ZgnWebApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("ColPosition")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -252,6 +261,9 @@ namespace ZgnWebApi.Migrations
 
                     b.Property<string>("NodeId")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RowPosition")
+                        .HasColumnType("int");
 
                     b.Property<int>("StationId")
                         .HasColumnType("int");
@@ -321,6 +333,9 @@ namespace ZgnWebApi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ToNode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransactionType")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedAt")

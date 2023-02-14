@@ -1,0 +1,7 @@
+
+.content{
+  height: calc(100vh - 60px);
+}
+.form-control:not(textarea){
+  height: 36px !important;
+}

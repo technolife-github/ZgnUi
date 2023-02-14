@@ -1,0 +1,74 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="x_panel">
+      <div class="x_content">
+        <div class="form-group row">
+          <label class="col-form-label col-md-3 col-sm-3 label-align"
+            >İşlem Detayları</label
+          >
+          <div class="col-md-6 col-sm-6">
+          <table style="text-align: left;">
+            <tr>
+              <th style="width: 140px">Ürün Grubu</th>
+              <td>{{transaction.GroupCode}}</td>
+            </tr>
+            <tr>
+              <th>Ürün Adı</th>
+              <td>{{transaction.ProductCode}}</td>
+            </tr>
+            <tr>
+              <th>İşlem Tipi</th>
+              <td>{{transaction.TransactionType}}</td>
+            </tr>
+            <tr>
+              <th>{{transaction.TransactionType=='İADE'?'İade':'Talep'}} Noktası</th>
+              <td>{{transaction.TransactionType=='İADE'?transaction.FromNode:transaction.ToNode}}</td>
+            </tr>
+            <tr>
+              <th>Açıklama</th>
+              <td>{{transaction.Description}}</td>
+            </tr>
+          </table>
+        </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-md-3 col-sm-3 label-align"
+            >İstaston</label
+          >
+          <div class="col-md-6 col-sm-6">
+            <select
+              class="form-control"
+              [(ngModel)]="selectedStationIndex"
+              (ngModelChange)="clearStationNode()"
+            >
+              <option
+                *ngFor="let station of stations; let i = index"
+                [value]="i"
+              >
+                {{ station.Name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-md-3 col-sm-3 label-align"
+            >Açıklama</label
+          >
+          <div class="col-md-6 col-sm-6">
+            <textarea class="form-control" [(ngModel)]="description">
+            </textarea>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <app-select-station
+          *ngIf="stations[selectedStationIndex] != undefined"
+          [station]="stations[selectedStationIndex]"
+          (selectedNodeEmitter)="setSelectedStationNode($event)"
+        ></app-select-station>
+      </div>
+      <button class="btn btn-primary" (click)="addTransaction()">
+        Talebi Onayla
+      </button>
+    </div>
+  </div>
+</div>

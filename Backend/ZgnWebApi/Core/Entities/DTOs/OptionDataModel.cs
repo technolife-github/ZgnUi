@@ -5,8 +5,8 @@ namespace ZgnWebApi.Core.Entities.DTOs
     [NotMapped]
     public class OptionDataModel
     {
-        public object id { get; set; }
-        public object text { get; set; }
-        public object obj { get; set; }
+        public object? id { get; set; }
+        public object? text { get; set; }
+        public object? obj { get; set; }
     }
 }

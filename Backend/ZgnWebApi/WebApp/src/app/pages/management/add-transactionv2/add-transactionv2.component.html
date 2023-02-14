@@ -1,0 +1,55 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="x_panel">
+      <div class="x_content">
+        <div class="form-group row">
+          <label class="col-form-label col-md-3 col-sm-3 label-align">Ürün Grubu</label>
+          <div class="col-md-6 col-sm-6">
+            <select
+              class="form-control"
+              [(ngModel)]="group"
+              (change)="getProducts()">
+              <option *ngFor="let item of sapGroups" [value]="item.Path">
+                {{ item.Name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-md-3 col-sm-3 label-align">Ürün Adı</label>
+          <div class="col-md-6 col-sm-6 filterable">
+            <select
+            #selectList class="form-control" [(ngModel)]="product" (ngModelChange)="onChangeofOptions($event)">
+           <input class="form-control" style="margin-bottom:30px ;"
+              (ngModelChange)="filterItem($event)"
+              [(ngModel)]="filterText">
+              <option *ngFor="let item of products" [value]="item.MATNR">
+                {{ item.MATNR+' -- '+item.MAKTX }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-md-3 col-sm-3 label-align">İstaston</label>
+          <div class="col-md-6 col-sm-6">
+            <select class="form-control" [(ngModel)]="selectedStationIndex" (ngModelChange)="clearStationNode()">
+              <option *ngFor="let station of stations; let i=index" [value]="i">
+                {{ station.Name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-md-3 col-sm-3 label-align">Açıklama</label>
+          <div class="col-md-6 col-sm-6">
+            <textarea class="form-control" [(ngModel)]="description">
+            </textarea>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <app-select-station *ngIf="stations[selectedStationIndex]!=undefined" [station]="stations[selectedStationIndex]" (selectedNodeEmitter)="setSelectedStationNode($event)" ></app-select-station>
+      </div>
+      <button class="btn btn-primary" (click)="addTransaction()">Talep Oluştur</button>
+    </div>
+  </div>
+</div>

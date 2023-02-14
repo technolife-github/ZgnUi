@@ -17,7 +17,7 @@ namespace ZgnWebApi.Entities
     public class Transaction : BaseTimeStamp, IPageableEntity<Transaction>
     {
         public int Id { get; set; }
-        //public string? TransactionType { get; set; }//TALEP
+        public string? TransactionType { get; set; }//TALEP,IADE
         public string? Status { get; set; }//Pending,Ready,End
         [NotMapped]
         public OptionDataModel? FromNodeView { get; set; }

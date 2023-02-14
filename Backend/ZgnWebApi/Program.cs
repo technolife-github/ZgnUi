@@ -1,6 +1,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -15,6 +16,7 @@ using ZgnWebApi.DataAccess.Contexts;
 using ZgnWebApi.Entities;
 using ZgnWebApi.Integrations.BlueBotics;
 using ZgnWebApi.Integrations.Klimasan;
+using ZgnWebApi.Integrations.Sap;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -79,9 +81,15 @@ builder.Services.AddMvc().AddJsonOptions(options =>
 builder.Services.AddCors();
 builder.Services.AddSingleton<IBlueBoticsIntegration, BlueBoticsIntegration>();
 builder.Services.AddSingleton<IKlimasanIntegration, KlimasanIntegration>();
+builder.Services.AddSingleton<ISapIntegration, SapIntegration>();
 builder.Services.AddSingleton<ITokenHelper, JwtHelper>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddHostedService<TransactionCheckWorkerService>();
+
+builder.Services.AddSpaStaticFiles(configuration =>
+{
+    configuration.RootPath = "WebApp/dist";
+});
 ServiceTool.Create(builder.Services);
 var origins = builder.Configuration.GetSection("AllowedHosts").Get<string>().Split(';');
 var app = builder.Build();
@@ -89,11 +97,11 @@ var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsDevelopment())
+//{
+//}
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseCors(builder =>
 {
     if (origins[0] == "*")
@@ -106,12 +114,29 @@ app.UseCors(builder =>
     }
 });
 app.ConfigureCustomExceptionMiddleware();
-app.UseHttpsRedirection();
-app.UseAuthentication();
-
-app.UseAuthorization();
-
 app.MapControllers();
+app.UseHsts();
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseSpaStaticFiles();
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller}/{action=Index}/{id?}");
+});
+app.UseSpa(spa =>
+{
+    spa.Options.SourcePath = "WebApp/dist";
+    if (app.Environment.IsDevelopment())
+    {
+        spa.UseAngularCliServer(npmScript: "start");
+    }
+});
 ZgnAgvManagerContext context = new();
 context.Database.Migrate();
 try

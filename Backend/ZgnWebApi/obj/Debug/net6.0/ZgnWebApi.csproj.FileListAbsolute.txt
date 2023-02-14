@@ -82,6 +82,9 @@ C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\bin\Debug\net6.0\Castle.Co
 C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\bin\Debug\net6.0\FluentValidation.dll
 C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\bin\Debug\net6.0\Humanizer.dll
 C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\bin\Debug\net6.0\Microsoft.AspNetCore.NodeServices.dll
+C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\bin\Debug\net6.0\Microsoft.AspNetCore.SpaServices.dll
+C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\bin\Debug\net6.0\Microsoft.AspNetCore.SpaServices.Extensions.dll
 C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll

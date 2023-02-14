@@ -54,7 +54,6 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderRouterModule,
     NgxUiLoaderHttpModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-
     FormsModule
   ],
   providers: [{

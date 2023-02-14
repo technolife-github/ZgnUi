@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq.Expressions;
 using ZgnWebApi.Core.DataAccess.EntityFramework;
 using ZgnWebApi.Core.Entities;
@@ -14,13 +15,19 @@ namespace ZgnWebApi.Entities
     {
         public int Id { get; set; }
         public string? Name { get; set; }
+        public int ColumnLen { get; set; }
+        public int RowLen { get; set; }
         [NotMapped]
         public OptionDataModel? TypeView { get; set; }
         public string? Type { get; set; }//Insertion,Pickup,Charger
         [NotMapped]
         public virtual List<OptionDataModel>? Nodes { get; set; }
         [NotMapped]
+        public virtual List<StationNode>? StationNodes { get; set; }
+        [NotMapped]
         public virtual List<OptionDataModel>? GroupCodes { get; set; }
+        [NotMapped]
+        public virtual List<StationGroupCode>? StationGroupCodes { get; set; }
 
         [NotMapped]
         public readonly Repository _repository = new Repository();
@@ -34,10 +41,14 @@ namespace ZgnWebApi.Entities
                                  select new Station()
                                  {
                                      Id = station.Id,
+                                     RowLen = station.RowLen,
+                                     ColumnLen = station.ColumnLen,
                                      Name = station.Name,
                                      Type = station.Type,
                                      GroupCodes = (from x in context.StationGroupCodes where x.StationId == station.Id select new OptionDataModel() { id = x.GroupCode, text = x.GroupCode }).ToList(),
+                                     StationGroupCodes = (from x in context.StationGroupCodes where x.StationId == station.Id select x).ToList(),
                                      Nodes = (from x in context.StationNodes where x.StationId == station.Id select new OptionDataModel() { id = x.NodeId, text = x.NodeId }).ToList(),
+                                     StationNodes = (from x in context.StationNodes where x.StationId == station.Id select x).ToList(),
                                      CreatedAt = station.CreatedAt,
                                      CreatedUser = station.CreatedUser,
                                      UpdatedAt = station.UpdatedAt,
@@ -88,6 +99,10 @@ namespace ZgnWebApi.Entities
             Nodes?.ForEach(item =>
             {
                 new StationNode() { StationId = Id, NodeId = item.id.ToString() }.CheckAndAdd();
+            });
+            StationNodes?.ForEach(item =>
+            {
+                item.Update();
             });
             new StationNode().GetAll(e => e.StationId == Id).Data.Where(x => !(Nodes?.Select(y => y.id.ToString()).ToList().Contains(x.NodeId) ?? false)).ToList().ForEach(item =>
             {
@@ -200,6 +215,13 @@ namespace ZgnWebApi.Entities
             //var claimIds = new UserStation().GetAll(e => e.UserId == userId).Data.Select(e => e.StationId);
             var stationIds = new User().Get(u => u.Id == userId).Data?.GetStations().Select(e => e.Id);
             return new SuccessDataResult<IPaginationResult<List<Station>>>(_repository.GetAllWithPagination(new PageableFilter<Station>(pageableFilter.Filter.And(e => stationIds.Contains(e.Id)), pageableFilter.Pagination)), "Listed all selected by in user data");
+
+        }
+        public IDataResult<List<Station>> GetAllByUserId(int userId)
+        {
+            //var claimIds = new UserStation().GetAll(e => e.UserId == userId).Data.Select(e => e.StationId);
+            var stationIds = new User().Get(u => u.Id == userId).Data?.GetStations().Select(e => e.Id);
+            return new SuccessDataResult<List<Station>>(_repository.GetAll(e => stationIds.Contains(e.Id)), "Listed all selected by in user data");
 
         }
 

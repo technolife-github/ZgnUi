@@ -29,5 +29,10 @@ export class ManagementComponent implements OnInit {
     this.router.navigate(['login']);
 
   }
+  toggleNav(){
+    alert();
+    document.querySelector('body')?.classList.toggle('nav-sm');
+    document.querySelector('body')?.classList.toggle('nav-md');
+  }
 
 }
