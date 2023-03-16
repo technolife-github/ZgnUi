@@ -54,7 +54,7 @@ C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\obj\Release\net6.0\PubTmp\
 C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\obj\Release\net6.0\PubTmp\Out\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\obj\Release\net6.0\PubTmp\Out\ZgnWebApi.deps.json
 C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\obj\Release\net6.0\PubTmp\Out\WebApp\dist\3rdpartylicenses.txt
-C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\obj\Release\net6.0\PubTmp\Out\WebApp\dist\879.a147908eb9ad457d.js
+C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\obj\Release\net6.0\PubTmp\Out\WebApp\dist\879.fda6763d1607d2c9.js
 C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\obj\Release\net6.0\PubTmp\Out\WebApp\dist\assets\gentelella\css\custom.css
 C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\obj\Release\net6.0\PubTmp\Out\WebApp\dist\assets\gentelella\images\back_disabled.png
 C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\obj\Release\net6.0\PubTmp\Out\WebApp\dist\assets\gentelella\images\back_enabled.png
@@ -77,6 +77,6 @@ C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\obj\Release\net6.0\PubTmp\
 C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\obj\Release\net6.0\PubTmp\Out\WebApp\dist\index.html
 C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\obj\Release\net6.0\PubTmp\Out\WebApp\dist\main.eba79e1637048020.js
 C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\obj\Release\net6.0\PubTmp\Out\WebApp\dist\polyfills.73fb7ec612c55a1c.js
-C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\obj\Release\net6.0\PubTmp\Out\WebApp\dist\runtime.9ee93ea701829f29.js
+C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\obj\Release\net6.0\PubTmp\Out\WebApp\dist\runtime.56f0f878240b9e20.js
 C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\obj\Release\net6.0\PubTmp\Out\WebApp\dist\scripts.e2640dc651e0cf2c.js
 C:\Users\OrioN\Desktop\Github\ZgnUi\Backend\ZgnWebApi\obj\Release\net6.0\PubTmp\Out\WebApp\dist\styles.f403e59ea839b352.css

@@ -7,28 +7,32 @@
             >İşlem Detayları</label
           >
           <div class="col-md-6 col-sm-6">
-          <table style="text-align: left;">
-            <tr>
-              <th style="width: 140px">Ürün Grubu</th>
-              <td>{{transaction.GroupCode}}</td>
-            </tr>
-            <tr>
-              <th>Ürün Adı</th>
-              <td>{{transaction.ProductCode}}</td>
-            </tr>
-            <tr>
-              <th>İşlem Tipi</th>
-              <td>{{transaction.TransactionType}}</td>
-            </tr>
-            <tr>
-              <th>{{transaction.TransactionType=='İADE'?'İade':'Talep'}} Noktası</th>
-              <td>{{transaction.TransactionType=='İADE'?transaction.FromNode:transaction.ToNode}}</td>
-            </tr>
-            <tr>
-              <th>Açıklama</th>
-              <td>{{transaction.Description}}</td>
-            </tr>
-          </table>
+            <table style="text-align: left;">
+              <tr>
+                <th style="width: 140px">Ürün Grubu</th>
+                <td>{{transaction.GroupCode}}</td>
+              </tr>
+              <tr>
+                <th>Seri Numarası</th>
+                <td>{{transaction.SerialNumber}}</td>
+              </tr>
+              <tr>
+                <th>Ürün Adı</th>
+                <td>{{transaction.ProductCode}}</td>
+              </tr>
+              <tr>
+                <th>İşlem Tipi</th>
+                <td>{{transaction.TransactionType}}</td>
+              </tr>
+              <tr>
+                <th>{{transaction.TransactionType=='İADE'?'İade':'Talep'}} Noktası</th>
+                <td>{{transaction.TransactionType=='İADE'?transaction.FromNode:transaction.ToNode}}</td>
+              </tr>
+              <tr>
+                <th>Açıklama</th>
+                <td>{{transaction.Description}}</td>
+              </tr>
+            </table>
         </div>
         </div>
         <div class="form-group row">

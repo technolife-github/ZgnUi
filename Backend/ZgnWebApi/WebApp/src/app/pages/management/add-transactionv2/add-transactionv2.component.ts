@@ -154,23 +154,11 @@ export class AddTransactionv2Component implements OnInit {
       }
     });
   }
-
-
-  @ViewChild('selectList', { static: false }) selectList: ElementRef;
-
-  onChangeofOptions(newGov) {
-     console.log(newGov);
+  getFilterProduct(){
+    var ps= this.products.filter(e=>e.MAKTX.toLowerCase().includes(this.filterText.toLowerCase())||e.MATNR.toLowerCase().includes(this.filterText.toLowerCase()));
+    console.log(ps);
+    return ps
   }
 
-  filterItem(event){
-      if(!event){
-        this.getProducts();
-      } // when nothing has typed*/
-      if (typeof event === 'string') {
-          this.products = this.products.filter(a => a.MAKTX.toLowerCase()
-                                             .startsWith(this.filterText.toLowerCase()));
-      }
-      console.log(this.products.length);
-      this.selectList.nativeElement.size = this.products.length + 1 ;
-   }
+
 }

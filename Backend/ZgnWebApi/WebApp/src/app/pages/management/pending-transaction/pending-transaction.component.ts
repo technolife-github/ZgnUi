@@ -98,7 +98,7 @@ export class PendingTransactionComponent implements OnInit {
           searchable: true,
           text: 'Teslimat Adresi',
           field: 'ToNode',
-          size: '100px',
+          size: '150px',
         },
         {
           searchable: 'int',
@@ -128,7 +128,7 @@ export class PendingTransactionComponent implements OnInit {
           searchable: true,
           text: 'Seri Numarası',
           field: 'SerialNumber',
-          size: '100px',
+          size: '200px',
         },
         {
           searchable: true,

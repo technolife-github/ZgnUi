@@ -18,15 +18,15 @@
         <div class="form-group row">
           <label class="col-form-label col-md-3 col-sm-3 label-align">Ürün Adı</label>
           <div class="col-md-6 col-sm-6 filterable">
-            <select
-            #selectList class="form-control" [(ngModel)]="product" (ngModelChange)="onChangeofOptions($event)">
-           <input class="form-control" style="margin-bottom:30px ;"
-              (ngModelChange)="filterItem($event)"
-              [(ngModel)]="filterText">
-              <option *ngFor="let item of products" [value]="item.MATNR">
-                {{ item.MATNR+' -- '+item.MAKTX }}
-              </option>
-            </select>
+            <div class="row px-2">
+              <input class="form-control col"
+                 [(ngModel)]="filterText" placeholder="Ürün Ara">
+              <select class="form-control col" [(ngModel)]="product">
+                <option *ngFor="let item of getFilterProduct()" [value]="item.MATNR">
+                  {{ item.MATNR+' -- '+item.MAKTX }}
+                </option>
+              </select>
+            </div>
           </div>
         </div>
         <div class="form-group row">
