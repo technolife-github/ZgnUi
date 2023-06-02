@@ -1,2 +1,3 @@
 ﻿  "UserName": "Supervisor",
-  "Password": "ZgnAgv!!2022"
+  "Password": "ZgnAgv!!2022",
+  "ApiUrl"
