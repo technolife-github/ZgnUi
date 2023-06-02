@@ -14,6 +14,7 @@ namespace ZgnWebApi.Integrations.BlueBotics
         Response<AddMisson> AddMission(string from, string to);
         Response<CancelMission> CancelMission(string missionId);
         Response<ListCancelMission> CancelMissions();
+        Response<Mission> MonitorCancelMission(string missionId);
         Response ExtractNode(string vehicle);
         int GetDelay();
         Response<Mission> GetMission(string missionId);
@@ -204,6 +205,26 @@ namespace ZgnWebApi.Integrations.BlueBotics
             {
                 var resultString = response.Content.ReadAsStringAsync().Result;
                 return JsonConvert.DeserializeObject<Response<CancelMission>>(resultString);
+            }
+            throw new BlueBoticsException("Get mission failed");
+        }
+        public Response<Mission> MonitorCancelMission(string missionId)
+        {
+            this.Login();
+            HttpClient = new HttpClient();
+            var parameter = JsonConvert.DeserializeObject(@"{
+	            ""command"": {
+                    ""name"": ""monitorMissionCancellation"",
+		            ""args"": {
+                            ""askCancel"":true
+                        }
+	            }}");
+            var content = new StringContent(JsonConvert.SerializeObject(parameter), Encoding.UTF8, "application/json");
+            var response = HttpClient.PostAsync($"{Config.ApiUrl}/wms/rest/missioncommands/{missionId}/command?sessiontoken={AppData.Login.SessionToken}", content).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var resultString = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<Response<Mission>>(resultString);
             }
             throw new BlueBoticsException("Get mission failed");
         }

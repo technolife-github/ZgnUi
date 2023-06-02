@@ -158,6 +158,13 @@ namespace ZgnWebApi.Controllers
             IErrorGridResult errorResult = new ErrorGridResult(result.Error);
             return BadRequest(errorResult);
         }
+        [HttpGet("MonitorCancelMissionById/{id}")]
+        public IActionResult MonitorCancelMissionById(string id)
+        {
+            base.CheckRole("BlueBotics.CancelMission");
+            var result = _blueBoticsIntegration.MonitorCancelMission(id);
+            return Ok(result);
+        }
         [HttpGet("CancelMissionById/{id}")]
         public IActionResult CancelMissionById(string id)
         {
