@@ -60,6 +60,7 @@ export class TransactionComponent implements OnInit {
               { text: 'İşlemi Getir', id: 'get-mission' },
               { text: 'İşlemleri Getir', id: 'get-missions' },
               { text: 'İşlemi İptal Et', id: 'delete-mission' },
+              { text: 'İşlemi Geri Al', id: 'monitor-cancel-mission' },
               { text: 'İşlemleri İptal Et', id: 'delete-missions' },
           ] },
           ],
@@ -88,11 +89,28 @@ export class TransactionComponent implements OnInit {
             else if (event.target == 'bluebotics:delete-mission') {
               var selection = w2ui.TransactionGrid.getSelection();
               if (selection.length == 0) {
-                self.messagerService.simple('Lütfen bir işlem seçiniz.','warning');
+                self.messagerService.simple('Lütfen bir işlem seçiniz.', 'warning');
                 return;
               }
               let rec = w2ui.TransactionGrid.get(selection[0]);
+              if (rec.ProcessId == null) {
+                self.messagerService.simple('Bu işlem henüz başlatılmadığı için iptal işlemi yapılamaz.', 'warning');
+                return;
+              }
               self.cancelMission(rec.ProcessId);
+            }
+            else if (event.target == 'bluebotics:monitor-cancel-mission') {
+              var selection = w2ui.TransactionGrid.getSelection();
+              if (selection.length == 0) {
+                self.messagerService.simple('Lütfen bir işlem seçiniz.', 'warning');
+                return;
+              }
+              let rec = w2ui.TransactionGrid.get(selection[0]);
+              if (rec.ProcessId == null) {
+                self.messagerService.simple('Bu işlem henüz başlatılmadığı için geri alma işlemi yapılamaz.', 'warning');
+                return;
+              }
+              self.monitorCancelMission(rec.ProcessId);
             }
             else if (event.target == 'bluebotics:delete-missions') {
               self.cancelMissions();
@@ -368,18 +386,31 @@ export class TransactionComponent implements OnInit {
       ],
     });
   }
-  cancelMission(missionId:any){
+  cancelMission(missionId: any) {
     this.blueBoticsService.cancelMission(missionId).subscribe(res => {
-      if(res.RetCode == 0){
+      if (res.RetCode == 0) {
         w2ui.TransactionGrid.reload();
         this.messagerService.simple('Görev iptal edildi');
-      }else{
-        this.messagerService.error('Hata',res.Error);
+      } else {
+        this.messagerService.error('Hata', res.Error);
       }
     },
-    (error:any)=>{
-      this.messagerService.error('Hata',error.error.Error);
-    });
+      (error: any) => {
+        this.messagerService.error('Hata', error.error.Error);
+      });
+  }
+  monitorCancelMission(missionId: any) {
+    this.blueBoticsService.monitorCancelMission(missionId).subscribe(res => {
+      if (res.RetCode == 0) {
+        w2ui.TransactionGrid.reload();
+        this.messagerService.simple('Görev iptal edildi');
+      } else {
+        this.messagerService.error('Hata', res.Error);
+      }
+    },
+      (error: any) => {
+        this.messagerService.error('Hata', error.error.Error);
+      });
   }
   cancelMissions(){
     this.blueBoticsService.cancelMissions().subscribe(res => {

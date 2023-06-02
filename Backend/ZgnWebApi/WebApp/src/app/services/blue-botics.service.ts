@@ -20,6 +20,9 @@ export class BlueBoticsService {
    cancelMissions():Observable<PayloadResult<any>>{
      return this.httpClient.get<PayloadResult<any>>(`${this.apiUrl}BlueBotics/CancelMissions`);
    }
+  monitorCancelMission(missionId: any): Observable<PayloadResult<any>>{
+    return this.httpClient.get<PayloadResult<any>>(`${this.apiUrl}BlueBotics/MonitorCancelMissionById/${missionId}`);
+}
    getAllDropNodesByLoginUser():Observable<DataResult<BlueBoticsItem[]>>{
     return this.httpClient.get<DataResult<BlueBoticsItem[]>>(`${this.apiUrl}BlueBotics/GetAllDropNodesByLoginUser`);
    }
