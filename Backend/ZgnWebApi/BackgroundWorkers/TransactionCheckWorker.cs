@@ -1,6 +1,10 @@
-﻿using ZgnWebApi.Core.Utilities.IoC;
+﻿using System.Net.Sockets;
+using System.Net;
+using System.Text;
+using ZgnWebApi.Core.Utilities.IoC;
 using ZgnWebApi.Entities;
 using ZgnWebApi.Integrations.BlueBotics;
+using Microsoft.AspNetCore.Http;
 
 namespace ZgnWebApi.BackgroundWorkers
 {
@@ -19,14 +23,14 @@ namespace ZgnWebApi.BackgroundWorkers
             {
                 while (!stoppingToken.IsCancellationRequested)
                 {
-                    new Transaction().GetAll(e => 
+                    new Transaction().GetAll(e =>
                     e.ProcessId != null &&
                     e.ProcessId != "" &&
                     e.EndDate == null &&
-                    e.Status != TransactionStatus.End.Value && 
+                    e.Status != TransactionStatus.End.Value &&
                     e.Status != TransactionStatus.Cancelled.Value &&
                     e.Status != TransactionStatus.Error.Value &&
-                    e.Status!=TransactionStatus.End.Value).Data.ForEach(t =>
+                    e.Status != TransactionStatus.End.Value).Data.ForEach(t =>
                     {
                         try
                         {

@@ -74,4 +74,5 @@ namespace ZgnWebApi.Controllers
             return base.SoftDeleteForUi(request);
         }
     }
+
 }

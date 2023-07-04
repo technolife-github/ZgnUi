@@ -1,6 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using ZgnWebApi.BackgroundWorkers;
 using ZgnWebApi.Entities;
 #nullable disable
 namespace ZgnWebApi.Core.Utilities.Security
@@ -65,6 +66,31 @@ namespace ZgnWebApi.Core.Utilities.Security
             claims.AddUserType(userType);
             claims.AddRoles(operationClaims.Select(c => c.Name).ToArray());
             return claims;
+        }
+
+        public AccessToken CreateWebSocketToken(ZgnWebSocketUser user)
+        {
+            var claims = new List<Claim>();
+            claims.AddNameIdentifier(user.SerialNumber);
+            _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
+            var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
+            var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey);
+            var jwt = new JwtSecurityToken(
+                issuer: _tokenOptions.Issuer,
+                audience: _tokenOptions.Audience,
+                expires: _accessTokenExpiration,
+                notBefore: DateTime.Now,
+                claims: claims,
+                signingCredentials: signingCredentials
+            );
+            var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
+            var token = jwtSecurityTokenHandler.WriteToken(jwt);
+
+            return new AccessToken
+            {
+                Token = token,
+                Expiration = _accessTokenExpiration
+            };
         }
     }
 
